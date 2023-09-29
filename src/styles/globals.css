@@ -99,6 +99,10 @@ a {
   color: inherit;
   text-decoration: none;
 }
+canvas{
+  min-height: 100vh;
+  background:grey
+}
 
 @media (prefers-color-scheme: dark) {
   html {

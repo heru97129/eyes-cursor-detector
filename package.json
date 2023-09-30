@@ -16,6 +16,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-three-fiber": "^6.0.13",
     "three": "^0.157.0"
   },
   "devDependencies": {

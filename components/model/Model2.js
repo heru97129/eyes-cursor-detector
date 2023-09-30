@@ -1,30 +1,36 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
-// haut 60
-// bas 0
+
+
+import { useFrame } from "react-three-fiber";
+
+
 
 export default function Model(props) {
+    let eyes = useRef(null)
   const { nodes, materials } = useGLTF("/eyes_01/scene.gltf");
-  console.log(nodes)
-  let [rot1,setRot1] = useState(81)
+    let [rot1,setRot1] = useState(80)
   let [rot2,setRot2] = useState(0)
-  let [rot3,setRot3] = useState(6.8)
-  useEffect(()=>{
-    window.addEventListener('mousemove',(e)=>{
-       console.log(e.clientX,e.clientY)
-    //   if(window.innerWidth /2 < e.clientX ){
-    //     setRot3((data)=> data < 7 ?  data += 0.01 : data = 7)
-    //   }else{
-    //     setRot3((data)=> data > 5.6 ? data -= 0.01 : data = 6)
-    //   } 
-    })
+  let [rot3,setRot3] = useState(6.3)
 
-    return ()=> window.removeEventListener('mousemove',()=> {})
+function mouseEv(y,d){
+  // // 79 81
+  eyes.current.rotation.z = -1
+  eyes.current.rotation.x = 80
+}
+  useEffect(()=>{
+    console.log(materials)
+  mouseEv()
   })
-  
+useFrame((e,delta)=>{
+  let incre = delta/1000
+  eyes.current.rotation.x = (rot1 - e.mouse.y)
+  eyes.current.rotation.z = (e.mouse.x)
+})
   return (
     <group {...props} dispose={null}>
       <mesh
+      ref={eyes}
         castShadow
         receiveShadow
         geometry={nodes.Eyes_01_Eyes_01_0.geometry}

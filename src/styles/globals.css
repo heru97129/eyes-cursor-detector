@@ -101,7 +101,7 @@ a {
 }
 canvas{
   min-height: 100vh;
-  background:grey
+  background:rgb(224, 223, 223)
 }
 
 @media (prefers-color-scheme: dark) {
